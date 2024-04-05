@@ -1,0 +1,4 @@
+it('has action on the create page', function (string $action) {
+   livewire(List{{ MODEL_PLURAL_NAME }}::class)
+    ->assertActionExists($action);
+})->with({{ CREATE_PAGE_HEADER_ACTIONS }})->group('action', 'render');

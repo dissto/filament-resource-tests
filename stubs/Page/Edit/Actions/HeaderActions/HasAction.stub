@@ -1,0 +1,6 @@
+it('has action on the edit page', function (string $action) {
+    $record = {{ MODEL_SINGULAR_NAME }}::factory()->create();
+
+    livewire(List{{ MODEL_PLURAL_NAME }}::class, ['record' => $record])
+        ->assertActionExists($action);
+})->with({{ EDIT_PAGE_HEADER_ACTIONS }})->group('action', 'render');

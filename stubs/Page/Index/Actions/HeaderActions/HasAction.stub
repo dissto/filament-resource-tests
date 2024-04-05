@@ -1,0 +1,4 @@
+it('has action on the index page', function (string $action) {
+   livewire(List{{ MODEL_PLURAL_NAME }}::class)
+    ->assertActionExists($action);
+})->with({{ INDEX_PAGE_HEADER_ACTIONS }})->group('action', 'render');

@@ -1,0 +1,9 @@
+it('can render action on the create page', function (string $action) {
+   livewire(List{{ MODEL_PLURAL_NAME }}::class)
+    ->assertActionVisible($action);
+})->with({{ CREATE_PAGE_VISIBLE_HEADER_ACTIONS }})->group('action', 'render');
+
+it('cannot render action on the create page', function (string $action) {
+   livewire(List{{ MODEL_PLURAL_NAME }}::class)
+    ->assertActionHidden($action);
+})->with({{ CREATE_PAGE_HIDDEN_HEADER_ACTIONS }})->group('action', 'render');
