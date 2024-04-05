@@ -460,14 +460,11 @@ class FilamentTestsCommand extends Command
         return $resource::table(new Table($livewire));
     }
 
-
     protected function getEditPageInstance(Resource $resource)
     {
         return $this->getFilamentPageInstance($resource::class, 'edit');
 
-
     }
-
 
     protected function getFilamentPageInstance(string $for, string $of = 'index'): mixed
     {
@@ -498,9 +495,8 @@ class FilamentTestsCommand extends Command
 
             if ($for === 'edit') {
 
-//                $resolvedRecord = $resource->getModel()::query()->find($recordIdentifier);
+                //                $resolvedRecord = $resource->getModel()::query()->find($recordIdentifier);
                 $record = $resource->getModel()::factory()->create()->getRouteKey();
-
 
                 $property = $reflectionClass->getProperty('record');
                 $property->setValue($instance, $record);
@@ -592,17 +588,18 @@ class FilamentTestsCommand extends Command
         $userModel = User::class;
         $modelImport = $resourceModel === $userModel ? "use {$resourceModel};" : "use {$resourceModel};\nuse {$userModel};";
 
-
         $record = $resourceModel::factory()->create()->getRouteKey();
         $modelClass = $resource->getModel();
         $modelInstance = $modelClass::find($record);
 
-//        dd($this->getPageHeaderActionNames($resource, 'edit'));
+        //        dd($this->getPageHeaderActionNames($resource, 'edit'));
+
 
 
 
 //        dd($this->getVisiblePageHeaderActionNames($resource, 'edit'));
         dd($this->getPageHeaderActions($resource, 'edit', $record));
+
 
         $toBeConverted = [
             'RESOURCE_TABLE_COLUMNS' => $this->getTableColumns($resource)->keys(),
@@ -620,7 +617,7 @@ class FilamentTestsCommand extends Command
             'CREATE_PAGE_HIDDEN_HEADER_ACTIONS' => $this->getHiddenPageHeaderActionNames($resource, 'create')->values(),
             'EDIT_PAGE_HEADER_ACTIONS' => $this->getPageHeaderActionNames($resource, 'edit', $record)->values(),
             'EDIT_PAGE_VISIBLE_HEADER_ACTIONS' => $this->getPageHeaderActionNames($resource, 'edit', $record)->map(fn ($action) => $action->getName())->values(),
-//            'EDIT_PAGE_HIDDEN_HEADER_ACTIONS' => $this->getHiddenPageHeaderActionNames($resource, 'edit', $resourceModel::factory()->create()->getRouteKey())->values(),
+            //            'EDIT_PAGE_HIDDEN_HEADER_ACTIONS' => $this->getHiddenPageHeaderActionNames($resource, 'edit', $resourceModel::factory()->create()->getRouteKey())->values(),
         ];
 
         $converted = array_map(function ($value) {
