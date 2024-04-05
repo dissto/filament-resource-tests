@@ -594,12 +594,8 @@ class FilamentTestsCommand extends Command
 
         //        dd($this->getPageHeaderActionNames($resource, 'edit'));
 
-
-
-
-//        dd($this->getVisiblePageHeaderActionNames($resource, 'edit'));
+        //        dd($this->getVisiblePageHeaderActionNames($resource, 'edit'));
         dd($this->getPageHeaderActions($resource, 'edit', $record));
-
 
         $toBeConverted = [
             'RESOURCE_TABLE_COLUMNS' => $this->getTableColumns($resource)->keys(),
