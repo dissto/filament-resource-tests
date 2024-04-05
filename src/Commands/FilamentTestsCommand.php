@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
-
 use ReflectionClass;
 use ReflectionException;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\multiselect;
 
@@ -331,7 +331,9 @@ class FilamentTestsCommand extends Command
         }
 
         // Check if the edit page has header actions
-        if ($this->getPageHeaderActions($resource, 'edit')) {
+
+        if ($this->getPageHeaderActions($resource, 'edit')->isNotEmpty()) {
+
             $stubs[] = $this->getStubPath('HasAction', 'Page/Edit/Actions/HeaderActions');
             $stubs[] = $this->getStubPath('RenderAction', 'Page/Edit/Actions/HeaderActions');
         }
@@ -444,8 +446,6 @@ class FilamentTestsCommand extends Command
         return $resource::form(new Form($livewire));
     }
 
-
-
     protected function getResourceCreateForm(Resource $resource): Form
     {
         $livewire = app('livewire')->new(CreateRecord::class);
@@ -460,14 +460,13 @@ class FilamentTestsCommand extends Command
         return $resource::table(new Table($livewire));
     }
 
+
     protected function getEditPageInstance(Resource $resource)
     {
         return $this->getFilamentPageInstance($resource::class, 'edit');
 
 
     }
-
-
 
 
     protected function getFilamentPageInstance(string $for, string $of = 'index'): mixed
@@ -515,7 +514,6 @@ class FilamentTestsCommand extends Command
             return collect([]);
         }
     }
-
 
     protected function getPageHeaderActionClasses(Resource $resource, string $for = 'index'): Collection
     {
@@ -600,6 +598,7 @@ class FilamentTestsCommand extends Command
         $modelInstance = $modelClass::find($record);
 
 //        dd($this->getPageHeaderActionNames($resource, 'edit'));
+
 
 
 //        dd($this->getVisiblePageHeaderActionNames($resource, 'edit'));
